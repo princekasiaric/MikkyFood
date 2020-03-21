@@ -16,8 +16,4 @@
     <ProjectReference Include="..\MFR.Models\MFR.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repository\Implementations\" />
-  </ItemGroup>
-
 </Project>

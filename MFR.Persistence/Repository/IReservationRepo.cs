@@ -1,6 +1,6 @@
 ﻿namespace MFR.Persistence.Repository
 {
-    public interface IOrder
+    public interface IReservationRepo
     {
     }
 }

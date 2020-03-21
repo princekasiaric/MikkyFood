@@ -1,6 +1,6 @@
 ﻿namespace MFR.Persistence.Repository
 {
-    public interface IShoppingBasket
+    public interface IShoppingBasketRepo
     {
     }
 }

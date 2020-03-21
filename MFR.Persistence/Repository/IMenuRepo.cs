@@ -1,6 +1,6 @@
 ﻿namespace MFR.Persistence.Repository
 {
-    public interface IMenu
+    public interface IMenuRepo
     {
     }
 }
