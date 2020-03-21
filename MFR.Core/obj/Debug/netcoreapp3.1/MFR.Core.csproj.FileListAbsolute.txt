@@ -1,0 +1,7 @@
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.Core.deps.json
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.Core.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.Core.pdb
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.AssemblyInfoInputs.cache
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.AssemblyInfo.cs
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.pdb

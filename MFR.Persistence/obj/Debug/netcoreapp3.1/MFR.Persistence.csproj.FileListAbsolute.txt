@@ -1,0 +1,7 @@
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.Persistence.deps.json
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.Persistence.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.Persistence.pdb
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\obj\Debug\netcoreapp3.1\MFR.Persistence.AssemblyInfoInputs.cache
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\obj\Debug\netcoreapp3.1\MFR.Persistence.AssemblyInfo.cs
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\obj\Debug\netcoreapp3.1\MFR.Persistence.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\obj\Debug\netcoreapp3.1\MFR.Persistence.pdb
