@@ -5,7 +5,7 @@ namespace MFR.Models
 {
     public class Menu
     {
-        public long Id { get; set; }
+        public long MenuId { get; set; } 
         public string Name { get; set; }
         public string Image { get; set; }
         public byte[] RowVersion { get; set; }

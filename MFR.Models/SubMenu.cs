@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MFR.Models
 {
     public class SubMenu
     {
-        public long Id { get; set; }
+        public long SubMenuId { get; set; }
+        public long MenuId { get; set; } 
         public Menu Menu { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }

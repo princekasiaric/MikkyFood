@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MFR.Models
 {
     public class OrderDetail
     {
         public long Id { get; set; }
+        public long OrderId { get; set; }
         public Order Order { get; set; }
+        public long SubMenuId { get; set; } 
         public SubMenu SubMenu { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }

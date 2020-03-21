@@ -4,14 +4,14 @@
     "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj": {
+    "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj",
-        "projectName": "MFR.Persistence",
-        "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj",
+        "projectName": "MFR.Models",
+        "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj",
         "packagesPath": "C:\\Users\\PRINCE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\obj\\",
+        "outputPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -40,6 +40,77 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj",
+        "projectName": "MFR.Persistence",
+        "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj",
+        "packagesPath": "C:\\Users\\PRINCE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\PRINCE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj": {
+                "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
