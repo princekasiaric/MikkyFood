@@ -1,4 +1,5 @@
 ﻿using MFR.Models;
+using MFR.Persistence.ModelValidation;
 using Microsoft.EntityFrameworkCore;
 
 namespace MFR.Persistence
@@ -12,6 +13,18 @@ namespace MFR.Persistence
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<ShoppingBasketItem> ShoppingBasketItems { get; set; }
 
-        public MFRDbContext(DbContextOptions<MFRDbContext> options) : base(options){}
+        public MFRDbContext(DbContextOptions<MFRDbContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ConfigureMenuConstraints();
+            modelBuilder.ConfigureSubMenuConstraints();
+            modelBuilder.ConfigureOrderConstraints();
+            modelBuilder.ConfigureOrderDetailConstraints();
+            modelBuilder.ConfigureReservationConstraints();
+            modelBuilder.ConfigureShoppingBasketItemConstraints();
+        }
     }
 }
