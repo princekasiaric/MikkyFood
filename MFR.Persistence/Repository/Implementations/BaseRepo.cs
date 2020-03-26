@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MFR.Persistence.Repository.Implementations
 {
-    public class BaseRepo<TEntity> : IBaseRepo<TEntity> where TEntity : class
+    public abstract class BaseRepo<TEntity> : IBaseRepo<TEntity> where TEntity : class 
     {
         protected readonly DbContext _context;
 

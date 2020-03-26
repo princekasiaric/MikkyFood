@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MFR.Models
+namespace MFR.DomainModels
 {
     public class SubMenu
     {

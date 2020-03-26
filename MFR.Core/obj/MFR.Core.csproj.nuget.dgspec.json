@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj": {
-                "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj"
+              "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj": {
+                "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj"
               },
               "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj": {
                 "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Persistence\\MFR.Persistence.csproj"
@@ -66,12 +66,12 @@
         }
       }
     },
-    "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj": {
+    "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj",
-        "projectName": "MFR.Models",
-        "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj",
+        "projectUniqueName": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj",
+        "projectName": "MFR.DomainModels",
+        "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj",
         "packagesPath": "C:\\Users\\PRINCE\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\obj\\",
         "projectStyle": "PackageReference",
@@ -147,8 +147,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj": {
-                "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj"
+              "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj": {
+                "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj"
               }
             }
           }
@@ -162,6 +162,14 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Http.Extensions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.0, )"

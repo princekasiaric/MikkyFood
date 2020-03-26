@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MFR.Models.Enum
+namespace MFR.DomainModels.Enum
 {
     public enum OrderMethod
     {

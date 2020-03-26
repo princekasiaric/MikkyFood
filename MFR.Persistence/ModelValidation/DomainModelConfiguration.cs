@@ -1,4 +1,4 @@
-﻿using MFR.Models;
+﻿using MFR.DomainModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace MFR.Persistence.ModelValidation

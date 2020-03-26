@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MFR.Models\MFR.Models.csproj" />
+    <ProjectReference Include="..\MFR.Models\MFR.DomainModels.csproj" />
     <ProjectReference Include="..\MFR.Persistence\MFR.Persistence.csproj" />
   </ItemGroup>
 

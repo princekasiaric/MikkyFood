@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MFR.Core\MFR.Core.csproj" />
-    <ProjectReference Include="..\MFR.Models\MFR.Models.csproj" />
+    <ProjectReference Include="..\MFR.Models\MFR.DomainModels.csproj" />
   </ItemGroup>
 
 

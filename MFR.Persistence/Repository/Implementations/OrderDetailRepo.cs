@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MFR.Persistence.Repository.Implementations
+﻿namespace MFR.Persistence.Repository.Implementations
 {
-    class OrderDetailRepo
+    public class OrderDetailRepo
     {
     }
 }

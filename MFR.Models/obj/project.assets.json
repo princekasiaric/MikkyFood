@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj",
-      "projectName": "MFR.Models",
-      "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.Models.csproj",
+      "projectUniqueName": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj",
+      "projectName": "MFR.DomainModels",
+      "projectPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\MFR.DomainModels.csproj",
       "packagesPath": "C:\\Users\\PRINCE\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\PRINCE\\Documents\\Personal project\\MyWebApiProject\\MikkyFood\\MFR.Models\\obj\\",
       "projectStyle": "PackageReference",

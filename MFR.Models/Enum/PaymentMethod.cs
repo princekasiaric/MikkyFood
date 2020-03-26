@@ -1,4 +1,4 @@
-﻿namespace MFR.Models.Enum
+﻿namespace MFR.DomainModels.Enum
 {
     public enum PaymentMethod
     {

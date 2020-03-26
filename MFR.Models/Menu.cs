@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MFR.Models
+namespace MFR.DomainModels
 {
     public class Menu
     {

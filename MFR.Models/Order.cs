@@ -1,8 +1,8 @@
-﻿using MFR.Models.Enum;
+﻿using MFR.DomainModels.Enum;
 using System;
 using System.Collections.Generic;
 
-namespace MFR.Models
+namespace MFR.DomainModels
 {
     public class Order
     {
