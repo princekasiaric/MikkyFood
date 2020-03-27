@@ -27,10 +27,10 @@ namespace MFR.Persistence.Repository.Implementations
             return new ShoppingBasketRepo(context) { ShoppingBasketId = basketId };
         }
 
-        public decimal GetShoppingBasketTotal()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<decimal> GetShoppingBasketTotal() 
+            => await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)
+                                                     .Select(sb => sb.SubMenu.Price * sb.Quantity)
+                                                     .SumAsync();
 
         public async Task<ICollection<DomainModels.ShoppingBasketItem>> ClearBasket() 
             => await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)

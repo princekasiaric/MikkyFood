@@ -25,6 +25,9 @@ namespace MFR.Persistence
             modelBuilder.ConfigureOrderDetailConstraints();
             modelBuilder.ConfigureReservationConstraints();
             modelBuilder.ConfigureShoppingBasketItemConstraints();
+
+            modelBuilder.SeededMenu();
+            modelBuilder.SeededSubMenu();
         }
     }
 }

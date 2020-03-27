@@ -1,15 +1,16 @@
 ﻿using MFR.DomainModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MFR.Persistence.Repository
 {
     public interface IShoppingBasketRepo //: IBaseRepo<ShoppingBasketItem>
     {
-        decimal GetShoppingBasketTotal();
+        Task<decimal> GetShoppingBasketTotal();
         string ShoppingBasketId { get; set; }
-        ICollection<ShoppingBasketItem> ClearBasket();
-        ShoppingBasketItem AddToBasket(SubMenu subMenu);
-        ICollection<ShoppingBasketItem> GetShoppingBasketItems();
+        Task<ICollection<ShoppingBasketItem>> ClearBasket();
+        Task<ShoppingBasketItem> AddToBasket(SubMenu subMenu);
+        Task<ICollection<ShoppingBasketItem>> GetShoppingBasketItems();
         ICollection<ShoppingBasketItem> ShoppingBasketItems { get; set; }
     }
 }

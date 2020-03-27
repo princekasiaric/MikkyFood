@@ -1,0 +1,8 @@
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\bin\Debug\netcoreapp3.1\MFR.DomainModels.deps.json
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\bin\Debug\netcoreapp3.1\MFR.DomainModels.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\bin\Debug\netcoreapp3.1\MFR.DomainModels.pdb
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\obj\Debug\netcoreapp3.1\MFR.DomainModels.csprojAssemblyReference.cache
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\obj\Debug\netcoreapp3.1\MFR.DomainModels.AssemblyInfoInputs.cache
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\obj\Debug\netcoreapp3.1\MFR.DomainModels.AssemblyInfo.cs
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\obj\Debug\netcoreapp3.1\MFR.DomainModels.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Models\obj\Debug\netcoreapp3.1\MFR.DomainModels.pdb

@@ -14,7 +14,7 @@ namespace MFR.Persistence.Migrations
                     MenuId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
-                    Image = table.Column<string>(nullable: false),
+                    Image = table.Column<string>(nullable: true),
                     RowVersion = table.Column<byte[]>(rowVersion: true, nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false, defaultValueSql: "GetDate()")
                 },

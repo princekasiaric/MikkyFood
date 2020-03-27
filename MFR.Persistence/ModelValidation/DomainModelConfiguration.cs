@@ -11,7 +11,7 @@ namespace MFR.Persistence.ModelValidation
             {
                 entity.HasKey(m => m.MenuId);
                 entity.Property(m => m.Name).IsRequired();
-                entity.Property(m => m.Image).IsRequired();
+                entity.Property(m => m.Image).IsRequired(false); 
                 entity.HasMany(m => m.SubMenus).WithOne(sm => sm.Menu);
                 entity.Property(m => m.RowVersion).IsRowVersion().IsRequired();
                 entity.Property(m => m.CreatedAt).HasDefaultValueSql("GetDate()").ValueGeneratedOnAddOrUpdate();

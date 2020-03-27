@@ -4,14 +4,16 @@ using MFR.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MFR.Persistence.Migrations
 {
     [DbContext(typeof(MFRDbContext))]
-    partial class MFRDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200326142338_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,68 +49,6 @@ namespace MFR.Persistence.Migrations
                     b.HasKey("MenuId");
 
                     b.ToTable("Menus");
-
-                    b.HasData(
-                        new
-                        {
-                            MenuId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 780, DateTimeKind.Local).AddTicks(2781),
-                            Name = "African Starter"
-                        },
-                        new
-                        {
-                            MenuId = 2L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1065),
-                            Name = "Protein"
-                        },
-                        new
-                        {
-                            MenuId = 3L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1178),
-                            Name = "Swallow"
-                        },
-                        new
-                        {
-                            MenuId = 4L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1189),
-                            Name = "Soup"
-                        },
-                        new
-                        {
-                            MenuId = 5L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1195),
-                            Name = "Sides & Salad"
-                        },
-                        new
-                        {
-                            MenuId = 6L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1202),
-                            Name = "Porridge"
-                        },
-                        new
-                        {
-                            MenuId = 7L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1208),
-                            Name = "Rice Dish"
-                        },
-                        new
-                        {
-                            MenuId = 8L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1214),
-                            Name = "Desert"
-                        },
-                        new
-                        {
-                            MenuId = 9L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1221),
-                            Name = "Chef's Special"
-                        },
-                        new
-                        {
-                            MenuId = 10L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 786, DateTimeKind.Local).AddTicks(1227),
-                            Name = "Beverages"
-                        });
                 });
 
             modelBuilder.Entity("MFR.DomainModels.Order", b =>
@@ -322,116 +262,6 @@ namespace MFR.Persistence.Migrations
                     b.HasIndex("MenuId");
 
                     b.ToTable("SubMenus");
-
-                    b.HasData(
-                        new
-                        {
-                            SubMenuId = 1L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(4391),
-                            Description = "Seafood okro is a delightful and delicious mix of all your favourite seafood and okro.",
-                            MenuId = 9L,
-                            Name = "Seafood Okoro",
-                            Price = 2500m
-                        },
-                        new
-                        {
-                            SubMenuId = 2L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(5994),
-                            Description = "Ofe Nsala (Nsala Soup) is a soup popular in the eastern part of Nigeria. It is also known as ''white soup'' nsala soup is know for its light texture.",
-                            MenuId = 9L,
-                            Name = "Ofe Nsala",
-                            Price = 1500m
-                        },
-                        new
-                        {
-                            SubMenuId = 3L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6058),
-                            Description = "Abacha and Ugba also known as African salad is a Cassava based dish from the Igbo tribe of Eastern Nigeria.",
-                            MenuId = 9L,
-                            Name = "Abacha & Ugba",
-                            Price = 1500m
-                        },
-                        new
-                        {
-                            SubMenuId = 4L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6068),
-                            Description = "This bitter leaf soup recipe (also know as Ofe Onugbu) is generously stocked with flavoursome meats, fish and cocoyams. Make it when you’re in the mood for something warm, serve with your favourite swallow, tuck in and enjoy.",
-                            MenuId = 9L,
-                            Name = "Bitterleaf",
-                            Price = 1000m
-                        },
-                        new
-                        {
-                            SubMenuId = 5L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6074),
-                            Description = " A tasty and hearty Nigerian soup made from Ogbono seeds (bush mango seeds) added with pre-cooked meat.",
-                            MenuId = 4L,
-                            Name = "Ogbono",
-                            Price = 500m
-                        },
-                        new
-                        {
-                            SubMenuId = 6L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6081),
-                            Description = "The African Stewed Spinach also popularly known as Efo riro is a one-pot stew with layers of flavor.",
-                            MenuId = 4L,
-                            Name = "Efo riro",
-                            Price = 500m
-                        },
-                        new
-                        {
-                            SubMenuId = 7L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6088),
-                            Description = "Pounded Yam is one of the best Nigeria swallows that is eaten with the various delicious Nigerian soups. it is made with white boiled yam.",
-                            MenuId = 3L,
-                            Name = "Pounded Yam",
-                            Price = 250m
-                        },
-                        new
-                        {
-                            SubMenuId = 8L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6095),
-                            Description = "Àmàlà is a local indigenous Nigerian food, native to the Yoruba tribe in the South-western parts of the country.",
-                            MenuId = 3L,
-                            Name = "Amala",
-                            Price = 150m
-                        },
-                        new
-                        {
-                            SubMenuId = 9L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6102),
-                            Description = "Peppered Gizzard is simply Nigerian stewed gizzards.",
-                            MenuId = 2L,
-                            Name = "Pepper Gizzard",
-                            Price = 500m
-                        },
-                        new
-                        {
-                            SubMenuId = 10L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6109),
-                            Description = "Goat meat or goat's meat is the meat of the domestic goat.",
-                            MenuId = 2L,
-                            Name = "Goat Meat",
-                            Price = 250m
-                        },
-                        new
-                        {
-                            SubMenuId = 11L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6116),
-                            Description = "Goat meat pepper soup, also referred to as nwo-nwo, ngwo-ngwo, and goat pepper soup, is a soup in Nigeria. Goat meat is used as a primary ingredient, and some versions may use crayfish.",
-                            MenuId = 1L,
-                            Name = "Goatmeat Pepper Soup",
-                            Price = 1500m
-                        },
-                        new
-                        {
-                            SubMenuId = 12L,
-                            CreatedAt = new DateTime(2020, 3, 27, 5, 48, 18, 791, DateTimeKind.Local).AddTicks(6122),
-                            Description = "Nigerian Catfish Pepper Soup (popularly known as Point & Kill) is that Nigerian pepper soup that is made with fresh cat fish.",
-                            MenuId = 1L,
-                            Name = "Catfish Pepper Soup",
-                            Price = 2500m
-                        });
                 });
 
             modelBuilder.Entity("MFR.DomainModels.OrderDetail", b =>

@@ -5,9 +5,9 @@ C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\ob
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.AssemblyInfo.cs
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.dll
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.pdb
-C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.Models.dll
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.Persistence.dll
-C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.Models.pdb
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.Persistence.pdb
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.csprojAssemblyReference.cache
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\obj\Debug\netcoreapp3.1\MFR.Core.csproj.CopyComplete
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.DomainModels.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Core\bin\Debug\netcoreapp3.1\MFR.DomainModels.pdb

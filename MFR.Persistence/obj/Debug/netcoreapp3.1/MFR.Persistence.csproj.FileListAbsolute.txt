@@ -8,6 +8,6 @@ C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persist
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\obj\Debug\netcoreapp3.1\MFR.Persistence.csprojAssemblyReference.cache
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.Persistence.runtimeconfig.json
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.Persistence.runtimeconfig.dev.json
-C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.Models.dll
-C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.Models.pdb
 C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\obj\Debug\netcoreapp3.1\MFR.Persistence.csproj.CopyComplete
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.DomainModels.dll
+C:\Users\PRINCE\Documents\Personal project\MyWebApiProject\MikkyFood\MFR.Persistence\bin\Debug\netcoreapp3.1\MFR.DomainModels.pdb
