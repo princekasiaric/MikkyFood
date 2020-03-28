@@ -1,6 +1,6 @@
 ﻿namespace MFR.Persistence.Repository.Implementations
 {
-    public class ShoppingBasketItem : BaseRepo<ShoppingBasketItem>
+    public class ShoppingBasketItem : BaseRepo<ShoppingBasketItem>, IShoppingBasketItemRepo
     {
         public ShoppingBasketItem(MFRDbContext context) : base(context){}
 

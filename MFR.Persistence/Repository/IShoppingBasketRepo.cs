@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace MFR.Persistence.Repository
 {
-    public interface IShoppingBasketRepo //: IBaseRepo<ShoppingBasketItem>
+    public interface IShoppingBasketRepo 
     {
         Task<decimal> GetShoppingBasketTotal();
         string ShoppingBasketId { get; set; }
