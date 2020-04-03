@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace MFR.Persistence.Repository.Implementations
 {
-    public class ShoppingBasketRepo : BaseRepo<ShoppingBasketItem>, IShoppingBasketRepo
+    public class ShoppingBasketRepo : BaseRepo<ShoppingBasketItem>, IShoppingBasketRepo 
     {
         public string ShoppingBasketId { get; set; }
-        public ICollection<DomainModels.ShoppingBasketItem> ShoppingBasketItems { get; set; }
+        public ICollection<ShoppingBasketItem> ShoppingBasketItems { get; set; }
 
         public ShoppingBasketRepo(MFRDbContext context) : base(context){ } 
 
@@ -32,20 +32,29 @@ namespace MFR.Persistence.Repository.Implementations
                                                      .Select(sb => sb.SubMenu.Price * sb.Quantity)
                                                      .SumAsync();
 
-        public async Task<ICollection<DomainModels.ShoppingBasketItem>> ClearBasket() 
+        public async Task<ICollection<ShoppingBasketItem>> ClearBasket() 
             => await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)
                                                      .ToListAsync();
 
-        public async Task<DomainModels.ShoppingBasketItem> AddToBasket(SubMenu subMenu)
-        {
-            return await MFRDbContext.ShoppingBasketItems.FirstOrDefaultAsync(sb => sb.SubMenu.SubMenuId
-            == subMenu.SubMenuId && sb.ShoppingBasketId == ShoppingBasketId);
-        }
+        public async Task<ShoppingBasketItem> AddToBasket(SubMenu subMenu) 
+            => await MFRDbContext.ShoppingBasketItems.FirstOrDefaultAsync(sb => sb.SubMenu.SubMenuId
+                                                                             == subMenu.SubMenuId && sb.ShoppingBasketId 
+                                                                             == ShoppingBasketId);
 
-        public async Task<ICollection<DomainModels.ShoppingBasketItem>> GetShoppingBasketItems() 
+        public async Task<ICollection<ShoppingBasketItem>> GetShoppingBasketItems() 
             => ShoppingBasketItems ?? (ShoppingBasketItems = await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)
                                                                                                    .Include(sb => sb.SubMenu)
                                                                                                    .ToListAsync());
+
+        public async Task<ShoppingBasketItem> RemoveFromBasket(SubMenu subMenu)
+            => await MFRDbContext.ShoppingBasketItems.FirstOrDefaultAsync(sb => sb.SubMenu.SubMenuId
+                                                                             == subMenu.SubMenuId && sb.ShoppingBasketId
+                                                                             == ShoppingBasketId);
+
+        public void DeleteBasket(ICollection<ShoppingBasketItem> shoppingBasketItems) 
+            => RemoveRange(shoppingBasketItems);
+
+        public void DeleteItemFromBasket(ShoppingBasketItem item) => Remove(item);
 
         public MFRDbContext MFRDbContext => _context as MFRDbContext;
     }

@@ -10,14 +10,12 @@ namespace MFR.Persistence.UnitOfWork
         IOrderRepo Orders { get; }
         ISubMenuRepo SubMenus { get; }
         IOrderDetailRepo OrderDetails { get; }
-        IReservationRepo Reservations { get; }
+        IReservationRepo Reservations { get; } 
         IShoppingBasketRepo ShoppingBaskets { get; }
         IShoppingBasketItemRepo ShoppingBasketItems { get; }
 
         int Save();
-        Task CommitAsync();
-        Task RollbackAsync();
         Task<int> SaveAsync();
-        Task BeginTransactionAsync();
+        Task<int> CommitAndSaveChangesAsync();
     }
 }

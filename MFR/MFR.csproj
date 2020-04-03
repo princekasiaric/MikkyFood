@@ -16,5 +16,9 @@
     <ProjectReference Include="..\MFR.Models\MFR.DomainModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\Images\" />
+  </ItemGroup>
+
 
 </Project>

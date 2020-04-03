@@ -20,6 +20,8 @@ namespace MFR.Persistence.Repository.Implementations
 
         public void Remove(TEntity entity) => _context.Set<TEntity>().Remove(entity);
 
+        public void Update(TEntity entity) => _context.Set<TEntity>().Update(entity);
+
         public void RemoveRange(ICollection<TEntity> entities) => _context.Set<TEntity>().RemoveRange(entities);
     }
 }

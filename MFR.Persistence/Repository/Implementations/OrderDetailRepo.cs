@@ -1,4 +1,5 @@
 ﻿using MFR.DomainModels;
+using System.Threading.Tasks;
 
 namespace MFR.Persistence.Repository.Implementations
 {
@@ -6,6 +7,9 @@ namespace MFR.Persistence.Repository.Implementations
     {
         public OrderDetailRepo(MFRDbContext context) : base(context){}
 
-        public MFRDbContext MFRDbContext { get; set; }
+        public async Task AddOrderDetailAsync(OrderDetail orderDetail) 
+            => await Add(orderDetail);
+
+        public MFRDbContext MFRDbContext => _context as MFRDbContext;
     }
 }

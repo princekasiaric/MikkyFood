@@ -19,6 +19,7 @@ namespace MFR.DomainModels
         public DateTime OrderPlacedAt { get; set; }
         public byte[] RowVersion { get; set; }
         public DateTime CreatedAt { get; set; }
+        public Reservation Reservation { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -6,11 +6,14 @@ namespace MFR.Persistence.Repository
 {
     public interface IShoppingBasketRepo 
     {
-        Task<decimal> GetShoppingBasketTotal();
         string ShoppingBasketId { get; set; }
+        Task<decimal> GetShoppingBasketTotal();
+        void DeleteItemFromBasket(ShoppingBasketItem item);
         Task<ICollection<ShoppingBasketItem>> ClearBasket();
         Task<ShoppingBasketItem> AddToBasket(SubMenu subMenu);
+        Task<ShoppingBasketItem> RemoveFromBasket(SubMenu subMenu);
         Task<ICollection<ShoppingBasketItem>> GetShoppingBasketItems();
         ICollection<ShoppingBasketItem> ShoppingBasketItems { get; set; }
+        void DeleteBasket(ICollection<ShoppingBasketItem> shoppingBasketItems);
     }
 }

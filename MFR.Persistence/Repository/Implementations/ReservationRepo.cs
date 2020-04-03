@@ -1,4 +1,5 @@
 ﻿using MFR.DomainModels;
+using System.Threading.Tasks;
 
 namespace MFR.Persistence.Repository.Implementations
 {
@@ -6,6 +7,9 @@ namespace MFR.Persistence.Repository.Implementations
     {
         public ReservationRepo(MFRDbContext context) : base(context){}
 
-        public MFRDbContext MFRDbContext { get; set; }
+        public async Task AddReservationAsync(Reservation reservation) 
+            => await Add(reservation);
+
+        public MFRDbContext MFRDbContext => _context as MFRDbContext;
     }
 }
