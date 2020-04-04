@@ -1,7 +1,7 @@
 ﻿namespace MFR.Core.DTO.Response
 {
-    public class UploadResponse
+    public class UploadResponse : BaseResponse
     {
-        public string ImageUrl { get; set; } 
+        public string ImagePath { get; set; } 
     }
 }

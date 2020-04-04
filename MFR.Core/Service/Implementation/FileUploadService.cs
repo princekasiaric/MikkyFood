@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using MFR.Core.DTO.Request;
+using MFR.Core.DTO.Response;
+using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -15,22 +16,22 @@ namespace MFR.Core.Service.Implementation
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<string> UploadImage(IFormFile file)
+        public async Task<UploadResponse> UploadImageAsync(UploadRequest request)
         {
-            var imageUrl = string.Empty;
-            if (file != null && file.Length > 0)
+            UploadResponse uploadPath = null;
+            if (request.Image != null && request.Image.Length > 0)
             {
                 var uploadDir = @"Resources/Image";
                 var contentRootPathWithUploadDir = Path.Combine(_webHostEnvironment.ContentRootPath, uploadDir);
-                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                var fileName = ContentDispositionHeaderValue.Parse(request.Image.ContentDisposition).FileName.Trim('"');
                 var path = Path.Combine(contentRootPathWithUploadDir, fileName);
                 using (var stream = new FileStream(path, FileMode.Create))
                 {
-                    await file.CopyToAsync(stream);
+                    await request.Image.CopyToAsync(stream);
                 }
-                imageUrl = "/" + uploadDir + "/" + fileName;
+                uploadPath.ImagePath = "/" + uploadDir + "/" + fileName;
             }
-            return imageUrl;
+            return uploadPath;
         }
     }
 }

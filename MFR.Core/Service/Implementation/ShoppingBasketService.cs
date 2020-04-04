@@ -27,7 +27,7 @@ namespace MFR.Core.Service.Implementation
         public string ShoppingBasketId { get => _unitOfWork.ShoppingBaskets.ShoppingBasketId; 
                                          set => _unitOfWork.ShoppingBaskets.ShoppingBasketId = value; }
 
-        public async Task AddToBasket(ShoppingBasketRequest request, int numberOfItem)
+        public async Task AddToBasketAsync(ShoppingBasketRequest request, int numberOfItem)
         {
             var subMenu = _mapper.Map<SubMenu>(request);
             var shoppingBasketItem = await _unitOfWork.ShoppingBaskets.AddToBasket(subMenu);
@@ -55,7 +55,7 @@ namespace MFR.Core.Service.Implementation
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<ShoppingBasketResponse> GetShoppingBasketItems() 
+        public async Task<ShoppingBasketResponse> GetShoppingBasketItemsAsync() 
         {
             ShoppingBasketResponse shoppingBasketResponse = null;
             var shoppingBasketItems = await _unitOfWork.ShoppingBaskets.GetShoppingBasketItems();

@@ -2,7 +2,7 @@
 
 namespace MFR.Core.DTO.Request
 {
-    public class UploadRequest
+    public class UploadRequest : BaseRequest
     {
         public IFormFile Image { get; set; }
     }

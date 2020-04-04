@@ -1,7 +1,6 @@
 ﻿using MFR.Core.DTO.Request;
 using MFR.Core.DTO.Response;
 using MFR.DomainModels;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MFR.Core.Service
@@ -11,7 +10,7 @@ namespace MFR.Core.Service
         Task ClearBasketAsync();
         string ShoppingBasketId { get; set; }
         Task RemoveFromBasketAsync(SubMenu subMenu);
-        Task AddToBasket(ShoppingBasketRequest request, int numberOfItem);
-        Task<ShoppingBasketResponse> GetShoppingBasketItems();
+        Task<ShoppingBasketResponse> GetShoppingBasketItemsAsync();
+        Task AddToBasketAsync(ShoppingBasketRequest request, int numberOfItem);
     }
 }

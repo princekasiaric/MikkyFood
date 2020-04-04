@@ -13,6 +13,6 @@ namespace MFR.Core.Service
         Task<ICollection<SubMenuResponse>> GetAllSubMenuAsync();
         Task UpdateSubMenuAsync(long id, SubMenuRequest request);
         Task<ICollection<SubMenuResponse>> GetSubMenuByOrderByNameAsync();
-        Task<ICollection<SubMenuResponse>> GetSubMenuWithMenu(string menu);
+        Task<ICollection<SubMenuResponse>> GetSubMenuWithMenuAsync(string menu);
     }
 }

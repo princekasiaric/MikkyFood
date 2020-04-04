@@ -46,7 +46,7 @@ namespace MFR.Core.Service.Implementation
         public async Task<ICollection<SubMenuResponse>> GetSubMenuByOrderByNameAsync() 
             => _mapper.Map<ICollection<SubMenuResponse>>(await _unitOfWork.SubMenus.GetSubMenuByOrderByNameAsync());
 
-        public async Task<ICollection<SubMenuResponse>> GetSubMenuWithMenu(string menu) 
+        public async Task<ICollection<SubMenuResponse>> GetSubMenuWithMenuAsync(string menu) 
             => _mapper.Map<ICollection<SubMenuResponse>>(await _unitOfWork.SubMenus.FindByCondition(sb => sb.Menu.Name == menu));
 
         public async Task UpdateSubMenuAsync(long id, SubMenuRequest request) 

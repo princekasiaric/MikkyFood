@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MFR.Core.DTO.Request;
+using MFR.Core.DTO.Response;
 using System.Threading.Tasks;
 
 namespace MFR.Core.Service
 {
-    public interface IFileUploadService
+    public interface IFileUploadService : IBaseService<UploadRequest, UploadResponse>
     {
-        Task<string> UploadImage(IFormFile file);
+        Task<UploadResponse> UploadImageAsync(UploadRequest request);
     }
 }
