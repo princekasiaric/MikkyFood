@@ -9,34 +9,26 @@ namespace MFR.Persistence.UnitOfWork.Implementation
     public class UnitOfWork : IUnitOfWork
     {
         private readonly MFRDbContext _context;
-
-        private bool _disposed;
+        private bool _disposed = false;
 
         public UnitOfWork(MFRDbContext context)
         {
             _context = context;
-            Menus = new MenuRepo(_context);
-            Orders = new OrderRepo(_context);
-            SubMenus = new SubMenuRepo(_context);
-            OrderDetails = new OrderDetailRepo(_context);
-            Reservations = new ReservationRepo(_context);
-            ShoppingBaskets = new ShoppingBasketRepo(_context);
-            ShoppingBasketItems = new ShoppingBasketItemRepo(_context);
         }
 
-        public IMenuRepo Menus { get; }
+        public IMenuRepo Menus => new MenuRepo(_context);
 
-        public IOrderRepo Orders { get; }
+        public IOrderRepo Orders => new OrderRepo(_context);
 
-        public ISubMenuRepo SubMenus { get; }
+        public ISubMenuRepo SubMenus => new SubMenuRepo(_context);
 
-        public IOrderDetailRepo OrderDetails { get; }
+        public IOrderDetailRepo OrderDetails => new OrderDetailRepo(_context);
 
-        public IReservationRepo Reservations { get; }
+        public IReservationRepo Reservations => new ReservationRepo(_context);
 
-        public IShoppingBasketRepo ShoppingBaskets { get; } 
+        public IShoppingBasketRepo ShoppingBaskets => new ShoppingBasketRepo(_context);
 
-        public IShoppingBasketItemRepo ShoppingBasketItems { get; }
+        public IShoppingBasketItemRepo ShoppingBasketItems => new ShoppingBasketItemRepo(_context);
 
 
         public async ValueTask DisposeAsync() => await _context.DisposeAsync();
@@ -68,14 +60,12 @@ namespace MFR.Persistence.UnitOfWork.Implementation
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed) return;
+            if (disposing)
             {
-                if (disposing)
+                if (_context != null)
                 {
-                    if (_context != null)
-                    {
-                        _context.Dispose();
-                    }
+                    _context.Dispose();
                 }
             }
             _disposed = true;

@@ -10,7 +10,7 @@ namespace MFR.Core.Service
         Task ClearBasketAsync();
         string ShoppingBasketId { get; set; }
         Task RemoveFromBasketAsync(SubMenu subMenu);
+        Task AddToBasketAsync(SubMenu subMenu, int numberOfItem);
         Task<ShoppingBasketResponse> GetShoppingBasketItemsAsync();
-        Task AddToBasketAsync(ShoppingBasketRequest request, int numberOfItem);
     }
 }

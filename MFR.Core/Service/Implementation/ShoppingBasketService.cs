@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using MFR.Core.DTO.Request;
-using MFR.Core.DTO.Response;
+﻿using MFR.Core.DTO.Response;
 using MFR.Core.Utils;
 using MFR.DomainModels;
 using MFR.Persistence.UnitOfWork;
@@ -12,25 +10,21 @@ namespace MFR.Core.Service.Implementation
     {
         private readonly IValueAddedTaxService _valueAddedTax;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private decimal total;
 
         public ShoppingBasketService(IValueAddedTaxService valueAddedTax, 
-                                     IUnitOfWork unitOfWork, 
-                                     IMapper mapper)
+                                     IUnitOfWork unitOfWork)
         {
             _valueAddedTax = valueAddedTax;
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
         public string ShoppingBasketId { get => _unitOfWork.ShoppingBaskets.ShoppingBasketId; 
                                          set => _unitOfWork.ShoppingBaskets.ShoppingBasketId = value; }
 
-        public async Task AddToBasketAsync(ShoppingBasketRequest request, int numberOfItem)
+        public async Task AddToBasketAsync(SubMenu subMenu, int numberOfItem)
         {
-            var subMenu = _mapper.Map<SubMenu>(request);
-            var shoppingBasketItem = await _unitOfWork.ShoppingBaskets.AddToBasket(subMenu);
+            var shoppingBasketItem = await _unitOfWork.ShoppingBaskets.AddToBasketAsync(subMenu);
             if (shoppingBasketItem == null)
             {
                 shoppingBasketItem = new ShoppingBasketItem
@@ -50,7 +44,7 @@ namespace MFR.Core.Service.Implementation
 
         public async Task ClearBasketAsync()
         {
-            var shoppingBasketItems = await _unitOfWork.ShoppingBaskets.ClearBasket();
+            var shoppingBasketItems = await _unitOfWork.ShoppingBaskets.ClearBasketAsync();
             _unitOfWork.ShoppingBaskets.DeleteBasket(shoppingBasketItems);
             await _unitOfWork.SaveAsync();
         }
@@ -58,7 +52,7 @@ namespace MFR.Core.Service.Implementation
         public async Task<ShoppingBasketResponse> GetShoppingBasketItemsAsync() 
         {
             ShoppingBasketResponse shoppingBasketResponse = null;
-            var shoppingBasketItems = await _unitOfWork.ShoppingBaskets.GetShoppingBasketItems();
+            var shoppingBasketItems = await _unitOfWork.ShoppingBaskets.GetShoppingBasketItemsAsync();
             if (shoppingBasketItems != null)
             {
 
@@ -73,7 +67,7 @@ namespace MFR.Core.Service.Implementation
                         CreatedAt = shoppingBasketItem.CreatedAt,
                         SubMenuId = shoppingBasketItem.SubMenuId,
                         Description = shoppingBasketItem.SubMenu.Description,
-                        ShoppingBasketTotal = total = await _unitOfWork.ShoppingBaskets.GetShoppingBasketTotal(),
+                        ShoppingBasketTotal = total = await _unitOfWork.ShoppingBaskets.GetShoppingBasketTotalAsync(),
                         VAT = _valueAddedTax.CalculateVat(total)
                     };
                 }
@@ -87,8 +81,7 @@ namespace MFR.Core.Service.Implementation
 
         public async Task RemoveFromBasketAsync(SubMenu subMenu)
         {
-            //var subMenu = await _unitOfWork.SubMenus.GetSubMenuByIdAsync(id); // This goes to controller
-            var shoppingBasketItem = await _unitOfWork.ShoppingBaskets.RemoveFromBasket(subMenu);
+            var shoppingBasketItem = await _unitOfWork.ShoppingBaskets.RemoveFromBasketAsync(subMenu);
             if (shoppingBasketItem != null)
             {
                 if (shoppingBasketItem.Quantity > 1)
@@ -97,7 +90,7 @@ namespace MFR.Core.Service.Implementation
                 }
                 else
                 {
-                    _unitOfWork.ShoppingBaskets.DeleteItemFromBasket(shoppingBasketItem);
+                    _unitOfWork.ShoppingBaskets.DeleteItemFromBasketAsync(shoppingBasketItem);
                 }
                 await _unitOfWork.CommitAndSaveChangesAsync();
             }

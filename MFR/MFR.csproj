@@ -9,15 +9,15 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MFR.Core\MFR.Core.csproj" />
-    <ProjectReference Include="..\MFR.Models\MFR.DomainModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ValidationFilter\" />
     <Folder Include="Resources\Images\" />
   </ItemGroup>
 

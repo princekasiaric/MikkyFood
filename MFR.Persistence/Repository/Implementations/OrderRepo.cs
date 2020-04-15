@@ -11,7 +11,7 @@ namespace MFR.Persistence.Repository.Implementations
         public async Task CreateOrderAsync(Order order, IShoppingBasketRepo shoppingBasket)
         {
             order.OrderPlacedAt = DateTime.UtcNow;
-            order.OrderTotalAmount = await shoppingBasket.GetShoppingBasketTotal();
+            order.OrderTotalAmount = await shoppingBasket.GetShoppingBasketTotalAsync();
         }
 
         public async Task AddOrderAsync(Order order) => await Add(order);

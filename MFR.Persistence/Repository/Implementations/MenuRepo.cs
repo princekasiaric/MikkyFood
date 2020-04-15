@@ -10,19 +10,14 @@ namespace MFR.Persistence.Repository.Implementations
         public MenuRepo(MFRDbContext context) : base(context){ }
 
         public async Task<ICollection<Menu>> GetAllMenuAsync() 
-            => await MFRDbContext.Menus.AsNoTracking().ToListAsync(); 
-
-        public async Task<ICollection<Menu>> GetAllMenuWithSubMenusAsync() 
-            => await MFRDbContext.Menus.Include(sb => sb.SubMenus).AsNoTracking().ToListAsync(); 
+            => await MFRDbContext.Menus.AsNoTracking().ToListAsync();
 
         public async Task AddMenuAsync(Menu menu) => await Add(menu);
 
         public void DeleteMenu(Menu menu) => Remove(menu);
 
-        public async Task<Menu> GetMenuOnlyByIdAsync(long id) => await MFRDbContext.Menus.FindAsync(id); 
-
-        public async Task<Menu> GetMenuWithSubMenusByIdAsync(long id) 
-            => await MFRDbContext.Menus.Include(sb => sb.SubMenus).FirstOrDefaultAsync(m => m.MenuId == id);
+        public async Task<Menu> GetMenuOnlyByIdAsync(long id) 
+            => await MFRDbContext.Menus.FindAsync(id); 
 
         public void UpdateMenu(Menu menu) => Update(menu);
 

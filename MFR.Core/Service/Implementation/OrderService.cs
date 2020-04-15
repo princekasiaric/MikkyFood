@@ -39,7 +39,7 @@ namespace MFR.Core.Service.Implementation
                 }
             }
             await CreateOrderDetailAsync(order);
-            await CreateReservationAsync(order);
+            await SelectOrderMethodAsync(order);
 
             await _unitOfWork.Orders.AddOrderAsync(order);
 
@@ -48,7 +48,7 @@ namespace MFR.Core.Service.Implementation
 
         private async Task CreateOrderDetailAsync(Order order)
         {
-            var shoppingBasketItems = await _unitOfWork.ShoppingBaskets.GetShoppingBasketItems();
+            var shoppingBasketItems = await _unitOfWork.ShoppingBaskets.GetShoppingBasketItemsAsync();
 
             foreach (var shoppingBasketItem in shoppingBasketItems)
             {
@@ -63,7 +63,7 @@ namespace MFR.Core.Service.Implementation
             }
         }
 
-        private async Task CreateReservationAsync(Order order)
+        private async Task SelectOrderMethodAsync(Order order)
         {
             if (Enum.TryParse(order.OrderMethod.ToString(), true, out OrderMethod orderMethod))
             {

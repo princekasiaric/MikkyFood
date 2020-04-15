@@ -14,16 +14,18 @@ namespace MFR.Core.Service.Implementation
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public SubMenuService(IUnitOfWork unitOfWork, IMapper mapper)
+        public SubMenuService(IUnitOfWork unitOfWork, IMapper mapper) 
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public async Task AddSubMenuAsync(SubMenuRequest request)
+        public async Task<SubMenuResponse> AddSubMenuAsync(SubMenuRequest request)
         {
-            await _unitOfWork.SubMenus.AddSubMenuAsync(_mapper.Map<SubMenu>(request));
+            var subMenu = _mapper.Map<SubMenu>(request);
+            await _unitOfWork.SubMenus.AddSubMenuAsync(subMenu);
             await _unitOfWork.SaveAsync();
+            return _mapper.Map<SubMenuResponse>(subMenu);
         }
 
         public async Task DeleteSubMenuAsync(long id)
@@ -46,7 +48,7 @@ namespace MFR.Core.Service.Implementation
         public async Task<ICollection<SubMenuResponse>> GetSubMenuByOrderByNameAsync() 
             => _mapper.Map<ICollection<SubMenuResponse>>(await _unitOfWork.SubMenus.GetSubMenuByOrderByNameAsync());
 
-        public async Task<ICollection<SubMenuResponse>> GetSubMenuWithMenuAsync(string menu) 
+        public async Task<ICollection<SubMenuResponse>> GetSubMenusByMenuAsync(string menu) 
             => _mapper.Map<ICollection<SubMenuResponse>>(await _unitOfWork.SubMenus.FindByCondition(sb => sb.Menu.Name == menu));
 
         public async Task UpdateSubMenuAsync(long id, SubMenuRequest request) 

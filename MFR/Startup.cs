@@ -1,17 +1,7 @@
-using AutoMapper;
-using FluentValidation;
 using FluentValidation.AspNetCore;
-using MFR.Core.DTO.Validator;
-using MFR.Core.Mappings;
-using MFR.Core.Service;
-using MFR.Core.Service.Implementation;
-using MFR.DomainModels;
+using MFR.Extensions;
 using MFR.GlobalException;
 using MFR.Persistence;
-using MFR.Persistence.Repository;
-using MFR.Persistence.Repository.Implementations;
-using MFR.Persistence.UnitOfWork;
-using MFR.Persistence.UnitOfWork.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -37,41 +27,21 @@ namespace MFR
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = _config["ConnectionString:Default"];
-            services.AddDbContext<MFRDbContext>(option => option.UseSqlServer(connectionString));
             services.AddControllers()
                     .AddFluentValidation()
-                    .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling 
+                    .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling
                                                = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddScoped<IMenuRepo, MenuRepo>();
-            services.AddScoped<IOrderRepo, OrderRepo>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ISubMenuRepo, SubMenuRepo>();
-            services.AddScoped<IOrderDetailRepo, OrderDetailRepo>();
-            services.AddScoped<IReservationRepo, ReservationRepo>();
-            services.AddScoped<IShoppingBasketItemRepo, ShoppingBasketItemRepo>();
-            services.AddScoped<IShoppingBasketRepo, ShoppingBasketRepo>(sb => ShoppingBasketRepo.GetBasket(sb));
+            services.AddDbContext<MFRDbContext>(option => option.UseSqlServer(_config["ConnectionString:Default"]));
 
-            services.AddScoped<IMenuService, MenuService>();
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<ISubMenuService, SubMenuService>();
-            services.AddScoped<IFileUploadService, FileUploadService>();
-            services.AddScoped<IValueAddedTaxService, ValueAddedTaxService>();
-            services.AddScoped<IShoppingBasketService, ShoppingBasketService>();
+            services.ConfigureRepository();
+            services.ConfigureAppCore();
+            services.ConfigureValidator();
+            services.ConfigureAutomapper();
 
-            services.AddTransient<IValidator<Menu>, MenuValidator>();
-            services.AddTransient<IValidator<Order>, OrderValidator>();
-            services.AddTransient<IValidator<SubMenu>, SubMenuValidator>();
 
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new MappingProfile());
-            });
-            services.AddSingleton(c => config.CreateMapper());
-
-            services.AddHttpContextAccessor();
-            services.AddSession();
+            //services.AddHttpContextAccessor();
+            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,9 +61,15 @@ namespace MFR
                 RequestPath = new PathString("/Resources")
             });
 
-            app.ConfigureExceptionMiddleware(loggerFactory);
+            //app.UseCors("CorsPolicy");
 
-            app.UseSession();
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.All
+            });
+
+            app.ConfigureExceptionMiddleware(loggerFactory);
+            //app.UseSession();
 
             app.UseRouting();
 

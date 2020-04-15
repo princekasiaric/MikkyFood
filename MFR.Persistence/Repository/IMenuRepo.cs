@@ -11,7 +11,5 @@ namespace MFR.Persistence.Repository
         void UpdateMenu(Menu menu);
         Task<Menu> GetMenuOnlyByIdAsync(long id);
         Task<ICollection<Menu>> GetAllMenuAsync();
-        Task<Menu> GetMenuWithSubMenusByIdAsync(long id);
-        Task<ICollection<Menu>> GetAllMenuWithSubMenusAsync();
     }
 }

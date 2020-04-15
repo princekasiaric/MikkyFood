@@ -27,26 +27,26 @@ namespace MFR.Persistence.Repository.Implementations
             return new ShoppingBasketRepo(context) { ShoppingBasketId = basketId };
         }
 
-        public async Task<decimal> GetShoppingBasketTotal() 
+        public async Task<decimal> GetShoppingBasketTotalAsync() 
             => await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)
                                                      .Select(sb => sb.SubMenu.Price * sb.Quantity)
                                                      .SumAsync();
 
-        public async Task<ICollection<ShoppingBasketItem>> ClearBasket() 
+        public async Task<ICollection<ShoppingBasketItem>> ClearBasketAsync() 
             => await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)
                                                      .ToListAsync();
 
-        public async Task<ShoppingBasketItem> AddToBasket(SubMenu subMenu) 
+        public async Task<ShoppingBasketItem> AddToBasketAsync(SubMenu subMenu) 
             => await MFRDbContext.ShoppingBasketItems.FirstOrDefaultAsync(sb => sb.SubMenu.SubMenuId
                                                                              == subMenu.SubMenuId && sb.ShoppingBasketId 
                                                                              == ShoppingBasketId);
 
-        public async Task<ICollection<ShoppingBasketItem>> GetShoppingBasketItems() 
+        public async Task<ICollection<ShoppingBasketItem>> GetShoppingBasketItemsAsync() 
             => ShoppingBasketItems ?? (ShoppingBasketItems = await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)
                                                                                                    .Include(sb => sb.SubMenu)
                                                                                                    .ToListAsync());
 
-        public async Task<ShoppingBasketItem> RemoveFromBasket(SubMenu subMenu)
+        public async Task<ShoppingBasketItem> RemoveFromBasketAsync(SubMenu subMenu)
             => await MFRDbContext.ShoppingBasketItems.FirstOrDefaultAsync(sb => sb.SubMenu.SubMenuId
                                                                              == subMenu.SubMenuId && sb.ShoppingBasketId
                                                                              == ShoppingBasketId);
@@ -54,7 +54,7 @@ namespace MFR.Persistence.Repository.Implementations
         public void DeleteBasket(ICollection<ShoppingBasketItem> shoppingBasketItems) 
             => RemoveRange(shoppingBasketItems);
 
-        public void DeleteItemFromBasket(ShoppingBasketItem item) => Remove(item);
+        public void DeleteItemFromBasketAsync(ShoppingBasketItem item) => Remove(item);
 
         public MFRDbContext MFRDbContext => _context as MFRDbContext;
     }

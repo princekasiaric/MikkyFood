@@ -8,11 +8,11 @@ namespace MFR.Core.Service
     public interface ISubMenuService : IBaseService<SubMenuRequest, SubMenuResponse>
     {
         Task DeleteSubMenuAsync(long id);
-        Task AddSubMenuAsync(SubMenuRequest request);
         Task<SubMenuResponse> GetSubMenuByIdAsync(long id);
         Task<ICollection<SubMenuResponse>> GetAllSubMenuAsync();
         Task UpdateSubMenuAsync(long id, SubMenuRequest request);
+        Task<SubMenuResponse> AddSubMenuAsync(SubMenuRequest request);
         Task<ICollection<SubMenuResponse>> GetSubMenuByOrderByNameAsync();
-        Task<ICollection<SubMenuResponse>> GetSubMenuWithMenuAsync(string menu);
+        Task<ICollection<SubMenuResponse>> GetSubMenusByMenuAsync(string menu);
     }
 }
