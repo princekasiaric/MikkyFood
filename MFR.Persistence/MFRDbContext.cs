@@ -1,10 +1,13 @@
 ﻿using MFR.DomainModels;
+using MFR.DomainModels.Identity;
 using MFR.Persistence.ModelValidation;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace MFR.Persistence
 {
-    public class MFRDbContext : DbContext
+    public class MFRDbContext : IdentityDbContext<User, IdentityRole, string>
     {
         public DbSet<Menu> Menus { get; set; }
         public DbSet<SubMenu> SubMenus { get; set; }
@@ -28,6 +31,7 @@ namespace MFR.Persistence
 
             modelBuilder.SeededMenu();
             modelBuilder.SeededSubMenu();
+            modelBuilder.SeededRole();
         }
     }
 }

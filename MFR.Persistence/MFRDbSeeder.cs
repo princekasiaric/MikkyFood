@@ -1,4 +1,5 @@
 ﻿using MFR.DomainModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -218,6 +219,24 @@ namespace MFR.Persistence
                         Image = null,
                         Price = 2500m,
                         CreatedAt = DateTime.Now
+                    });
+            });
+        }
+
+        public static void SeededRole(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityRole>(entity =>
+            {
+                entity.HasData(
+                    new IdentityRole
+                    {
+                        Name = "Visitor",
+                        NormalizedName = "VISITOR"
+                    },
+                    new IdentityRole
+                    {
+                        Name = "Administrator",
+                        NormalizedName = "ADMINISTRATOR"
                     });
             });
         }

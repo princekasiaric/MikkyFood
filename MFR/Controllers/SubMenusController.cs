@@ -2,6 +2,7 @@
 using MFR.Core.DTO.Request;
 using MFR.Core.DTO.Response;
 using MFR.Core.Service;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MFR.Controllers
@@ -20,6 +21,7 @@ namespace MFR.Controllers
         }
 
         [HttpGet]
+        [EnableCors("CorsPolicy")]
         public async Task<IActionResult> GetSubMenus()
         {
             var response = await _subMenuService.GetAllSubMenuAsync();
@@ -29,7 +31,7 @@ namespace MFR.Controllers
                     new ApiResponse
                     {
                         Status = false,
-                        Message = "Not found"
+                        Message = "SubMenus not found"
                     });
             }
             return Ok(
@@ -41,7 +43,8 @@ namespace MFR.Controllers
                 });
         }
 
-        [HttpGet("{id}", Name = "GetSubMenuById")]
+        [EnableCors("CorsPolicy")]
+        [HttpGet("submenu/{id}", Name = "GetSubMenuById")]
         public async Task<IActionResult> GetSubMenuByIdAsync(long id)
         {
             var response = await _subMenuService.GetSubMenuByIdAsync(id);
@@ -51,7 +54,7 @@ namespace MFR.Controllers
                     new ApiResponse
                     {
                         Status = false,
-                        Message = "Not found"
+                        Message = $"'{response.SubMenuId}' not found"
                     });
             }
             return Ok(
@@ -63,8 +66,9 @@ namespace MFR.Controllers
                 });
         }
 
-        [HttpGet("{menu:string}")]
-        public async Task<IActionResult> GetSubMenuByMenuAsync(string menu)
+        [EnableCors("CorsPolicy")]
+        [HttpGet("menu/{menu:string}/submenus")]
+        public async Task<IActionResult> GetSubMenusByMenuAsync(string menu)
         {
             var response = await _subMenuService.GetSubMenusByMenuAsync(menu);
             if (response == null)
@@ -73,7 +77,7 @@ namespace MFR.Controllers
                     new ApiResponse
                     {
                         Status = false,
-                        Message = "Not found"
+                        Message = $"'{menu}' not found"
                     });
             }
             return Ok(
@@ -85,7 +89,7 @@ namespace MFR.Controllers
                 });
         }
 
-        [HttpPost]
+        [HttpPost("submenu")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PostSubMenuAsync([FromBody]SubMenuRequest request)
         {
@@ -107,7 +111,7 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpPut]
+        [HttpPut("submenu/{id}")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> PutSubMenuAsynce(long id, [FromBody]SubMenuRequest request)
         {
@@ -127,8 +131,8 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMenuAsync(long id)
+        [HttpDelete("submenu/{id}")]
+        public async Task<IActionResult> DeleteSubMenuAsync(long id)
         {
             await _subMenuService.DeleteSubMenuAsync(id);
             return StatusCode(204, new ApiResponse
@@ -138,7 +142,7 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost("upload")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UploadAsync([FromBody]UploadRequest request)
         {
@@ -156,7 +160,7 @@ namespace MFR.Controllers
                 new ApiResponse
                 {
                     Status = true,
-                    Message = "File uploaded",
+                    Message = $"Successful",
                     Result = imagePath
                 });
         }

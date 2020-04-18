@@ -1,10 +1,12 @@
 using FluentValidation.AspNetCore;
+using MFR.DomainModels.Identity;
 using MFR.Extensions;
 using MFR.GlobalException;
 using MFR.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +35,7 @@ namespace MFR
                                                = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<MFRDbContext>(option => option.UseSqlServer(_config["ConnectionString:Default"]));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MFRDbContext>().AddDefaultTokenProviders();
 
             services.ConfigureRepository();
             services.ConfigureAppCore();

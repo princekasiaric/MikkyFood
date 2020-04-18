@@ -33,7 +33,7 @@ namespace MFR.Controllers
             _shoppingBasketService.ShoppingBasketId = _shoppingBasketRepo.ShoppingBasketId;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("basket/{id}")]
         public async Task<IActionResult> AddToShoppingBasketAsync(long id)
         {
             var subMenu = _mapper.Map<SubMenu>(await _subMenuService.GetSubMenuByIdAsync(id));
@@ -45,11 +45,11 @@ namespace MFR.Controllers
                     new ApiResponse
                     {
                         Status = false,
-                        Message = "Not found"
+                        Message = $"SubMenu Id '{id}' not found"
                     });
         }
 
-        [HttpPost]
+        [HttpPost("order")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateOrderAsync([FromBody]OrderRequest request)
         {
@@ -64,7 +64,7 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpGet("items")]
         public async Task<IActionResult> GetShoppingBasketItemsAsync()
         {
             var response = await _shoppingBasketService.GetShoppingBasketItemsAsync();
@@ -73,7 +73,7 @@ namespace MFR.Controllers
                 return NotFound(new ApiResponse
                 {
                     Status = false,
-                    Message = "Not found"
+                    Message = "Shopping basket is empty, add item to it"
                 });
             }
             return Ok(new ApiResponse
@@ -84,7 +84,7 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("item/{id}")]
         public async Task<IActionResult> RemoveFromBasketAsync(long id)
         {
             var subMenu = _mapper.Map<SubMenu>(await _subMenuService.GetSubMenuByIdAsync(id));
@@ -93,7 +93,7 @@ namespace MFR.Controllers
                 return NotFound(new ApiResponse
                 {
                     Status = false,
-                    Message = "Not found"
+                    Message = $"Item Id '{id}' not added to shopping basket"
                 });
             }
             await _shoppingBasketService.RemoveFromBasketAsync(subMenu);
@@ -104,7 +104,7 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpDelete]
+        [HttpDelete("basket")]
         public async Task<IActionResult> DeleteShoppingBasketAsync()
         {
             await _shoppingBasketService.ClearBasketAsync();
