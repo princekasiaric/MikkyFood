@@ -1,5 +1,4 @@
 ﻿using MFR.Core.DTO.Response;
-using MFR.Core.Utils;
 using MFR.DomainModels;
 using MFR.Persistence.UnitOfWork;
 using System.Threading.Tasks;
@@ -71,10 +70,6 @@ namespace MFR.Core.Service.Implementation
                         VAT = _valueAddedTax.CalculateVat(total)
                     };
                 }
-            }
-            else
-            {
-                throw new EmptyShoppingBasketException($"Add item to shoppingBasket.");
             }
             return shoppingBasketResponse;
         }

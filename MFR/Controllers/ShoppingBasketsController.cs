@@ -73,7 +73,7 @@ namespace MFR.Controllers
                 return NotFound(new ApiResponse
                 {
                     Status = false,
-                    Message = "Shopping basket is empty, add item to it"
+                    Message = "Shopping basket is empty, add item"
                 });
             }
             return Ok(new ApiResponse
@@ -105,7 +105,7 @@ namespace MFR.Controllers
         }
 
         [HttpDelete("basket")]
-        public async Task<IActionResult> DeleteShoppingBasketAsync()
+        public async Task<IActionResult> ClearShoppingBasketAsync()
         {
             await _shoppingBasketService.ClearBasketAsync();
             return StatusCode(204, new ApiResponse

@@ -2,7 +2,6 @@
 using MFR.Core.DTO.Request;
 using MFR.Core.DTO.Response;
 using MFR.DomainModels;
-using MFR.Persistence.Repository;
 using MFR.Persistence.UnitOfWork;
 using MFR.Persistence.Utils;
 using System.Collections.Generic;
@@ -34,7 +33,6 @@ namespace MFR.Core.Service.Implementation
             var menu = await _unitOfWork.Menus.GetMenuOnlyByIdAsync(id);
             if (menu != null)
             {
-                // code will go in here after implementing jwt in order to resolve the common issue with jwt claims 
                 _unitOfWork.Menus.DeleteMenu(menu);
                 await _unitOfWork.SaveAsync();
             }
