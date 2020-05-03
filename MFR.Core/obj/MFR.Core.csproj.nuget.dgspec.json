@@ -67,6 +67,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[12.0.3, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.14.1, )"
             }
           },
           "imports": [

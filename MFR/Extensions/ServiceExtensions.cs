@@ -5,6 +5,7 @@ using MFR.Core.Mappings;
 using MFR.Core.Service;
 using MFR.Core.Service.Implementation;
 using MFR.DomainModels;
+using MFR.EmailSender;
 using MFR.Persistence.Repository;
 using MFR.Persistence.Repository.Implementations;
 using MFR.Persistence.UnitOfWork;
@@ -24,8 +25,8 @@ namespace MFR.Extensions
             services.AddScoped<ISubMenuRepo, SubMenuRepo>();
             services.AddScoped<IOrderDetailRepo, OrderDetailRepo>();
             services.AddScoped<IReservationRepo, ReservationRepo>();
-            services.AddScoped<IShoppingBasketItemRepo, ShoppingBasketItemRepo>();
-            services.AddScoped<IShoppingBasketRepo, ShoppingBasketRepo>(sb => ShoppingBasketRepo.GetBasket(sb));
+            services.AddScoped<IShoppingBasketRepo, ShoppingBasketRepo>();
+            services.AddScoped<IShoppingBasketItemRepo, ShoppingBasketItemRepo>(); 
         }
 
         public static void ConfigureAppCore(this IServiceCollection services)
@@ -36,6 +37,8 @@ namespace MFR.Extensions
             services.AddScoped<IFileUploadService, FileUploadService>();
             services.AddScoped<IValueAddedTaxService, ValueAddedTaxService>();
             services.AddScoped<IShoppingBasketService, ShoppingBasketService>();
+
+            services.AddSingleton<ISendMail, SendMail>();
         }
 
         public static void ConfigureValidator(this IServiceCollection services)
@@ -61,11 +64,6 @@ namespace MFR.Extensions
                 options.AddPolicy("CorsPolicy",
                     policy => policy.AllowAnyOrigin().WithMethods("Get").WithHeaders("accept", "content"));
             });
-        }
-
-        public static void ConfigureIISIntegration(this IServiceCollection services)
-        {
-            services.Configure<IISOptions>(options => { });
         }
     }
 }

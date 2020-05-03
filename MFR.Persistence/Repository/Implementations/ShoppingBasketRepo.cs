@@ -16,17 +16,6 @@ namespace MFR.Persistence.Repository.Implementations
 
         public ShoppingBasketRepo(MFRDbContext context) : base(context){ } 
 
-        public static ShoppingBasketRepo GetBasket(IServiceProvider service)
-        {
-            ISession session = service.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
-
-            var context = service.GetService<MFRDbContext>();
-            var basketId = session.GetString("basketId") ?? Guid.NewGuid().ToString();
-            session.SetString("basketId", basketId);
-
-            return new ShoppingBasketRepo(context) { ShoppingBasketId = basketId };
-        }
-
         public async Task<decimal> GetShoppingBasketTotalAsync() 
             => await MFRDbContext.ShoppingBasketItems.Where(sb => sb.ShoppingBasketId == ShoppingBasketId)
                                                      .Select(sb => sb.SubMenu.Price * sb.Quantity)

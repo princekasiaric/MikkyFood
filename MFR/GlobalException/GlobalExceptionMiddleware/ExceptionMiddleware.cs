@@ -1,5 +1,4 @@
 ﻿using MFR.Core.DTO.Response;
-using MFR.Core.Utils;
 using MFR.Persistence.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -27,11 +26,6 @@ namespace MFR.GlobalException.GlobalExceptionMiddleware
                 await _request(context);
             }
             catch (EntityNotFoundException ex)
-            {
-                _logger.LogError($"{ex.Source}: {ex.Message}");
-                await HabdleExceptionAsync(context, ex);
-            }
-            catch (EmptyShoppingBasketException ex)
             {
                 _logger.LogError($"{ex.Source}: {ex.Message}");
                 await HabdleExceptionAsync(context, ex);

@@ -3,6 +3,7 @@ using MFR.DomainModels.Identity;
 using MFR.Extensions;
 using MFR.GlobalException;
 using MFR.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,10 +41,12 @@ namespace MFR
             services.AddDbContext<MFRDbContext>(option => option.UseSqlServer(_config["ConnectionString:Default"]));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MFRDbContext>().AddDefaultTokenProviders();
 
+            services.Configure<DataProtectionTokenProviderOptions>(option => option.TokenLifespan = TimeSpan.FromHours(2));
+
             services.Configure<IdentityOptions>(options =>
             {
-                options.Password.RequiredLength = 7;
-                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireDigit = true;
                 options.Password.RequireUppercase = false;
 
                 options.Lockout.AllowedForNewUsers = true;
@@ -55,24 +58,35 @@ namespace MFR
                 options.SignIn.RequireConfirmedEmail = false;
             });
 
+            services.AddAuthentication().AddFacebook(option =>
+            {
+                option.AppId = _config["FacebookAppId"];
+                option.AppSecret = _config["FacebookAppSecret"];
+            });
+
             services.ConfigureRepository();
             services.ConfigureAppCore();
             services.ConfigureValidator();
             services.ConfigureAutomapper();
 
-            services.AddAuthentication().AddJwtBearer(options =>
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
             {
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
                     ValidIssuer = _config["Tokens:Issuer"],
                     ValidAudience = _config["Tokens:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
                 };
             });
-
-            //services.AddHttpContextAccessor();
-            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,12 +114,11 @@ namespace MFR
             });
 
             app.ConfigureExceptionMiddleware(loggerFactory);
-            //app.UseSession();
 
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization(); 
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

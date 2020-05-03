@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MFR.Controllers
 {
-    [Route("api/menus")]
+    [Route("api/[controller]")]
     [ApiController]
     public class MenusController : ControllerBase 
     {
@@ -38,7 +38,7 @@ namespace MFR.Controllers
                 new ApiResponse
                 {
                     Status = true,
-                    Message = "Successful",
+                    Message = "Success",
                     Result = response
                 });
         }
@@ -61,7 +61,7 @@ namespace MFR.Controllers
                 new ApiResponse
                 {
                     Status = true,
-                    Message = "Successful",
+                    Message = "Success",
                     Result = response
                 });
         }
@@ -78,15 +78,15 @@ namespace MFR.Controllers
                 return Created(url, new ApiResponse
                 {
                     Status = true,
-                    Message = "Successful",
-                    Result = response
+                    Message = "Success",
+                    Result = url
                 });
             }
             return BadRequest(
                 new ApiResponse
                 {
                     Status = false,
-                    Message = "Validation error"
+                    Message = "Validation Failure"
                 });
         }
 
@@ -100,14 +100,14 @@ namespace MFR.Controllers
                 return StatusCode(204, new ApiResponse 
                 { 
                     Status = true,
-                    Message = "Successful"
+                    Message = "Success"
                 });
             }
             return BadRequest(
                 new ApiResponse
                 {
                     Status = false,
-                    Message = "Validation error"
+                    Message = "Validation Failure"
                 });
         }
 
@@ -118,7 +118,7 @@ namespace MFR.Controllers
             return StatusCode(204, new ApiResponse 
             { 
                 Status = true,
-                Message = "Successful"
+                Message = "Success"
             });
         }
 
@@ -140,7 +140,7 @@ namespace MFR.Controllers
                 new ApiResponse
                 {
                     Status = true,
-                    Message = "Successful",
+                    Message = "Success",
                     Result = imagePath
                 });
         }

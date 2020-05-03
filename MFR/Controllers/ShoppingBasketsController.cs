@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MFR.Controllers
 {
-    [Route("api/shoppingbaskets")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ShoppingBasketsController : ControllerBase
     {
@@ -60,7 +60,7 @@ namespace MFR.Controllers
             return StatusCode(204, new ApiResponse
             {
                 Status = true,
-                Message = "Successful"
+                Message = "Success"
             });
         }
 
@@ -79,7 +79,7 @@ namespace MFR.Controllers
             return Ok(new ApiResponse
             {
                 Status = true,
-                Message = "Successful",
+                Message = "Success",
                 Result = response
             });
         }
@@ -100,7 +100,7 @@ namespace MFR.Controllers
             return StatusCode(204, new ApiResponse
             {
                 Status = true,
-                Message = "Successful"
+                Message = "Success"
             });
         }
 
@@ -111,7 +111,7 @@ namespace MFR.Controllers
             return StatusCode(204, new ApiResponse
             {
                 Status = true,
-                Message = "Successful"
+                Message = "Success"
             });
         }
     }
