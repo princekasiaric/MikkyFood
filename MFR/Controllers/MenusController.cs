@@ -129,7 +129,7 @@ namespace MFR.Controllers
             var imagePath = await _uploadService.UploadImageAsync(request);
             if (imagePath == null)
             {
-                return BadRequest(
+                return NotFound(
                     new ApiResponse
                     {
                         Status = false,

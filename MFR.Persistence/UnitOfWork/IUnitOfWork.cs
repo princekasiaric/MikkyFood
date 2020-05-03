@@ -14,7 +14,6 @@ namespace MFR.Persistence.UnitOfWork
         IShoppingBasketRepo ShoppingBaskets { get; }
         IShoppingBasketItemRepo ShoppingBasketItems { get; }
 
-        int Save();
         Task<int> SaveAsync();
         Task<int> CommitAndSaveChangesAsync();
     }

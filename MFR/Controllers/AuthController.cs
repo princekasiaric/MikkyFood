@@ -196,20 +196,15 @@ namespace MFR.Controllers
                     var callBackUrl = Url.ActionLink("ResetPassword", "Auth", new { token, email = request.Email }, Request.Scheme);
                     await _sendMail.SendMailAsync("princekasiaric@gmail.com", request.Email, "Password reset token...", callBackUrl);
                 }
-                else
-                {
-                    return BadRequest(new ApiResponse { Status = false, Message = "Invalid email address" });
-                }
                 return Ok(new ApiResponse { Status = true, Message = "Success" });
             }
             return BadRequest(new ApiResponse { Status = false, Message = "Validation Failure" });
         }
 
         [HttpGet("token")]
-        [ValidateAntiForgeryToken]
         public IActionResult ResetPassword(string token, string email)
         {
-            return Ok(new ResetPasswordRequest { Email = email, Token = token });
+            return StatusCode(204, new ResetPasswordRequest { Email = email, Token = token });
         }
 
         [HttpPost("password")]

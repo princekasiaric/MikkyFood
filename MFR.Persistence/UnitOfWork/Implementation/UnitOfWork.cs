@@ -33,8 +33,6 @@ namespace MFR.Persistence.UnitOfWork.Implementation
 
         public async ValueTask DisposeAsync() => await _context.DisposeAsync();
 
-        public int Save() => _context.SaveChanges();
-
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();

@@ -87,7 +87,7 @@ namespace MFR.Core.Service.Implementation
                 {
                     _unitOfWork.ShoppingBaskets.DeleteItemFromBasketAsync(shoppingBasketItem);
                 }
-                await _unitOfWork.CommitAndSaveChangesAsync();
+                await _unitOfWork.SaveAsync();
             }
         }
     }

@@ -55,7 +55,7 @@ namespace MFR
 
                 options.User.RequireUniqueEmail = true;
 
-                options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedEmail = true;
             });
 
             services.AddAuthentication().AddFacebook(option =>
