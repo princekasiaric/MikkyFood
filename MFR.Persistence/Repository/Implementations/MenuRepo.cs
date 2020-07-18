@@ -16,8 +16,8 @@ namespace MFR.Persistence.Repository.Implementations
 
         public void DeleteMenu(Menu menu) => Remove(menu);
 
-        public async Task<Menu> GetMenuOnlyByIdAsync(long id) 
-            => await MFRDbContext.Menus.FindAsync(id); 
+        public async Task<Menu> GetMenuOnlyByIdAsync(long Id) 
+            => await MFRDbContext.Menus.FindAsync(Id); 
 
         public void UpdateMenu(Menu menu) => Update(menu);
 

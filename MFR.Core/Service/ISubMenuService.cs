@@ -7,10 +7,10 @@ namespace MFR.Core.Service
 {
     public interface ISubMenuService : IBaseService<SubMenuRequest, SubMenuResponse>
     {
-        Task DeleteSubMenuAsync(long id);
-        Task<SubMenuResponse> GetSubMenuByIdAsync(long id);
+        Task DeleteSubMenuAsync(long Id);
+        Task<SubMenuResponse> GetSubMenuByIdAsync(long Id);
         Task<ICollection<SubMenuResponse>> GetAllSubMenuAsync();
-        Task UpdateSubMenuAsync(long id, SubMenuRequest request);
+        Task UpdateSubMenuAsync(long Id, SubMenuRequest request);
         Task<SubMenuResponse> AddSubMenuAsync(SubMenuRequest request);
         Task<ICollection<SubMenuResponse>> GetSubMenuByOrderByNameAsync();
         Task<ICollection<SubMenuResponse>> GetSubMenusByMenuAsync(string menu);

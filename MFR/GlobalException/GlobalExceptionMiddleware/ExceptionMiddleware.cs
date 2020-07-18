@@ -28,21 +28,21 @@ namespace MFR.GlobalException.GlobalExceptionMiddleware
             catch (EntityNotFoundException ex)
             {
                 _logger.LogError($"{ex.Source}: {ex.Message}");
-                await HabdleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex);
             }
             catch (DbUpdateConcurrencyException ex)
             {
                 _logger.LogError($"{ex.Source}: {ex.Message}");
-                await HabdleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"{ex.Source}: {ex.Message}");
-                await HabdleExceptionAsync(context, ex);
+                await HandleExceptionAsync(context, ex);
             }
         }
 
-        private Task HabdleExceptionAsync(HttpContext context, Exception exception)
+        private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;

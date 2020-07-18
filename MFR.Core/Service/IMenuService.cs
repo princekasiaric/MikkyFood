@@ -8,10 +8,10 @@ namespace MFR.Core.Service
 {
     public interface IMenuService : IBaseService<MenuRequest, MenuResponse>
     {
-        Task DeleteAsync(long id);
+        Task DeleteAsync(long Id);
         Task<MenuResponse> CreateAsync(MenuRequest request);
-        Task UpdateAsync(long id, MenuRequest request);
+        Task UpdateAsync(long Id, MenuRequest request);
         Task<ICollection<MenuResponse>> GetMenusAsync();
-        Task<MenuResponse> GetMenuByIdAsync(long id);
+        Task<MenuResponse> GetMenuByIdAsync(long Id);
     }
 }

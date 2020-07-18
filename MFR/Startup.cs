@@ -3,6 +3,7 @@ using MFR.DomainModels.Identity;
 using MFR.Extensions;
 using MFR.GlobalException;
 using MFR.Persistence;
+using MFR.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +42,11 @@ namespace MFR
             services.AddDbContext<MFRDbContext>(option => option.UseSqlServer(_config["ConnectionString:Default"]));
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MFRDbContext>().AddDefaultTokenProviders();
 
-            services.Configure<DataProtectionTokenProviderOptions>(option => option.TokenLifespan = TimeSpan.FromHours(2));
+            services.Configure<DataProtectionTokenProviderOptions>(option => option.TokenLifespan = TimeSpan.FromHours(24));
+
+            var configSection = _config.GetSection("AppSettings");
+            services.Configure<AppSettings>(configSection);
+            var settings = configSection.Get<AppSettings>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -55,7 +60,7 @@ namespace MFR
 
                 options.User.RequireUniqueEmail = true;
 
-                options.SignIn.RequireConfirmedEmail = true;
+                options.SignIn.RequireConfirmedEmail = false;
             });
 
             services.AddAuthentication().AddFacebook(option =>
@@ -72,6 +77,7 @@ namespace MFR
             services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(options =>
             {
                 options.SaveToken = true;
@@ -82,13 +88,14 @@ namespace MFR
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
 
-                    ValidIssuer = _config["Tokens:Issuer"],
-                    ValidAudience = _config["Tokens:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]))
+                    ValidIssuer = settings.Tokens.Issuer,
+                    ValidAudience = settings.Tokens.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretKey:Key"]))
                 };
             });
+            services.AddSwaggerGen();
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -106,15 +113,13 @@ namespace MFR
                 RequestPath = new PathString("/Resources")
             });
 
-            app.UseCors("CorsPolicy");
-
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.All
-            });
-
             app.ConfigureExceptionMiddleware(loggerFactory);
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MikkyFood Restaurant Service API V1");
+            });
             app.UseRouting();
 
             app.UseAuthentication();

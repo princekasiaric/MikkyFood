@@ -2,11 +2,12 @@
 using MFR.Core.DTO.Request;
 using MFR.Core.DTO.Response;
 using MFR.Core.Service;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MFR.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MenusController : ControllerBase 
@@ -20,15 +21,15 @@ namespace MFR.Controllers
             _uploadService = uploadService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        [EnableCors("CorsPolicy")]
-        public async Task<IActionResult> GetMenusAsync()
+        public async Task<IActionResult> GetMenus()
         {
             var response = await _menuService.GetMenusAsync();
             if (response == null)
             {
                 return NotFound(
-                    new ApiResponse
+                    new ApiResponse 
                     {
                         Status = false,
                         Message = "No menu found"
@@ -43,11 +44,11 @@ namespace MFR.Controllers
                 });
         }
 
-        [EnableCors("CorsPolicy")]
-        [HttpGet("menu/{id}", Name = "GetMenuById")]
-        public async Task<IActionResult> GetMenuByIdAsync(int id)
+        [AllowAnonymous]
+        [HttpGet("menu/{Id}", Name = "GetMenuById")]
+        public async Task<IActionResult> GetMenuById(long Id)
         {
-            var response = await _menuService.GetMenuByIdAsync(id);
+            var response = await _menuService.GetMenuByIdAsync(Id);
             if (response == null)
             {
                 return NotFound(
@@ -66,9 +67,8 @@ namespace MFR.Controllers
                 });
         }
 
-        [HttpPost("menu")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostMenuAsync([FromBody]MenuRequest request)
+        [HttpPost]
+        public async Task<IActionResult> PostMenu([FromBody]MenuRequest request)
         {
             MenuResponse response;
             if (ModelState.IsValid)
@@ -90,13 +90,12 @@ namespace MFR.Controllers
                 });
         }
 
-        [HttpPut("menu/{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PutMenuAsync(long id, [FromBody]MenuRequest request)
+        [HttpPut("Menu/{Id}")]
+        public async Task<IActionResult> UpdateMenu(long Id, [FromBody]MenuRequest request)
         {
             if (ModelState.IsValid)
             {
-                await _menuService.UpdateAsync(id, request);
+                await _menuService.UpdateAsync(Id, request);
                 return StatusCode(204, new ApiResponse 
                 { 
                     Status = true,
@@ -111,10 +110,10 @@ namespace MFR.Controllers
                 });
         }
 
-        [HttpDelete("menu/{id}")]
-        public async Task<IActionResult> DeleteMenuAsync(long id)
+        [HttpDelete("menu/{Id}")]
+        public async Task<IActionResult> DeleteMenu(long Id)
         {
-            await _menuService.DeleteAsync(id);
+            await _menuService.DeleteAsync(Id);
             return StatusCode(204, new ApiResponse 
             { 
                 Status = true,
@@ -122,9 +121,8 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpPost("upload")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UploadAsync([FromBody]UploadRequest request)
+        [HttpPost(template: "upload")]
+        public async Task<IActionResult> Upload([FromBody]UploadRequest request)
         {
             var imagePath = await _uploadService.UploadImageAsync(request);
             if (imagePath == null)

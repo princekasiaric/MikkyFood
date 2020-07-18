@@ -17,8 +17,8 @@ namespace MFR.Persistence.Repository.Implementations
         public async Task<ICollection<SubMenu>> GetAllSubMenuAsync() 
             => await MFRDbContext.SubMenus.ToListAsync();
 
-        public async Task<SubMenu> GetSubMenuByIdAsync(long id) 
-            => await MFRDbContext.SubMenus.FindAsync(id);
+        public async Task<SubMenu> GetSubMenuByIdAsync(long Id) 
+            => await MFRDbContext.SubMenus.AsNoTracking().SingleOrDefaultAsync(sb=>sb.SubMenuId.Equals(Id));
 
         public async Task<ICollection<SubMenu>> GetSubMenuByOrderByNameAsync() 
             => await MFRDbContext.SubMenus.OrderBy(sb => sb.Name).ToListAsync();

@@ -28,22 +28,23 @@ namespace MFR.Core.Service.Implementation
             return _mapper.Map<SubMenuResponse>(subMenu);
         }
 
-        public async Task DeleteSubMenuAsync(long id)
+        public async Task DeleteSubMenuAsync(long Id)
         {
-            var subMenu = await _unitOfWork.SubMenus.GetSubMenuByIdAsync(id);
+            var subMenu = await _unitOfWork.SubMenus.GetSubMenuByIdAsync(Id);
             if (subMenu != null)
             {
                 _unitOfWork.SubMenus.DeleteSubMenu(subMenu);
                 await _unitOfWork.SaveAsync();
             }
-            throw new EntityNotFoundException($"SubMenu Id '{subMenu.SubMenuId}' not found.");
+            else
+                throw new EntityNotFoundException($"SubMenu Id '{subMenu.SubMenuId}' not found.");
         }
 
         public async Task<ICollection<SubMenuResponse>> GetAllSubMenuAsync() 
             => _mapper.Map<ICollection<SubMenuResponse>>(await _unitOfWork.SubMenus.GetAllSubMenuAsync());
 
-        public async Task<SubMenuResponse> GetSubMenuByIdAsync(long id) 
-            => _mapper.Map<SubMenuResponse>(await _unitOfWork.SubMenus.GetSubMenuByIdAsync(id));
+        public async Task<SubMenuResponse> GetSubMenuByIdAsync(long Id) 
+            => _mapper.Map<SubMenuResponse>(await _unitOfWork.SubMenus.GetSubMenuByIdAsync(Id));
 
         public async Task<ICollection<SubMenuResponse>> GetSubMenuByOrderByNameAsync() 
             => _mapper.Map<ICollection<SubMenuResponse>>(await _unitOfWork.SubMenus.GetSubMenuByOrderByNameAsync());
@@ -51,9 +52,9 @@ namespace MFR.Core.Service.Implementation
         public async Task<ICollection<SubMenuResponse>> GetSubMenusByMenuAsync(string menu) 
             => _mapper.Map<ICollection<SubMenuResponse>>(await _unitOfWork.SubMenus.FindByCondition(sb => sb.Menu.Name == menu));
 
-        public async Task UpdateSubMenuAsync(long id, SubMenuRequest request) 
+        public async Task UpdateSubMenuAsync(long Id, SubMenuRequest request) 
         {
-            var subMenu = await _unitOfWork.SubMenus.GetSubMenuByIdAsync(id);
+            var subMenu = await _unitOfWork.SubMenus.GetSubMenuByIdAsync(Id);
             if (subMenu != null)
             {
                 subMenu.Name = request.Name;
@@ -62,7 +63,8 @@ namespace MFR.Core.Service.Implementation
                 _unitOfWork.SubMenus.UpdateSubMenu(subMenu);
                 await _unitOfWork.SaveAsync();
             }
-            throw new EntityNotFoundException($"SubMenu Id '{subMenu.SubMenuId}' not found.");
+            else
+                throw new EntityNotFoundException($"SubMenu Id '{subMenu.SubMenuId}' not found.");
         }
     }
 }

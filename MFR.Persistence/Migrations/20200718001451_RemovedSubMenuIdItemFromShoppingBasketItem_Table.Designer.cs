@@ -4,14 +4,16 @@ using MFR.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MFR.Persistence.Migrations
 {
     [DbContext(typeof(MFRDbContext))]
-    partial class MFRDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200718001451_RemovedSubMenuIdItemFromShoppingBasketItem_Table")]
+    partial class RemovedSubMenuIdItemFromShoppingBasketItem_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

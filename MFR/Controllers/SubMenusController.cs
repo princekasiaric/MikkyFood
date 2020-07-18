@@ -2,11 +2,12 @@
 using MFR.Core.DTO.Request;
 using MFR.Core.DTO.Response;
 using MFR.Core.Service;
-using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MFR.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SubMenusController : ControllerBase
@@ -20,8 +21,8 @@ namespace MFR.Controllers
             _uploadService = uploadService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        [EnableCors("CorsPolicy")]
         public async Task<IActionResult> GetSubMenus()
         {
             var response = await _subMenuService.GetAllSubMenuAsync();
@@ -43,11 +44,11 @@ namespace MFR.Controllers
                 });
         }
 
-        [EnableCors("CorsPolicy")]
-        [HttpGet("submenu/{id}", Name = "GetSubMenuById")]
-        public async Task<IActionResult> GetSubMenuByIdAsync(long id)
+        [AllowAnonymous]
+        [HttpGet("subMenu/{Id:long}", Name = "GetSubMenuById")]
+        public async Task<IActionResult> GetSubMenuById(long Id)
         {
-            var response = await _subMenuService.GetSubMenuByIdAsync(id);
+            var response = await _subMenuService.GetSubMenuByIdAsync(Id);
             if (response == null)
             {
                 return NotFound(
@@ -66,9 +67,9 @@ namespace MFR.Controllers
                 });
         }
 
-        [EnableCors("CorsPolicy")]
-        [HttpGet("menu/{menu:string}/submenus")]
-        public async Task<IActionResult> GetSubMenusByMenuAsync(string menu)
+        [AllowAnonymous]
+        [HttpGet("{menu}")]
+        public async Task<IActionResult> GetSubMenusByMenu(string menu)
         {
             var response = await _subMenuService.GetSubMenusByMenuAsync(menu);
             if (response == null)
@@ -89,9 +90,8 @@ namespace MFR.Controllers
                 });
         }
 
-        [HttpPost("submenu")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PostSubMenuAsync([FromBody]SubMenuRequest request)
+        [HttpPost]
+        public async Task<IActionResult> PostSubMenu([FromBody]SubMenuRequest request)
         {
             SubMenuResponse response;
             if (ModelState.IsValid)
@@ -111,13 +111,12 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpPut("submenu/{id}")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PutSubMenuAsynce(long id, [FromBody]SubMenuRequest request)
+        [HttpPut("SubMenu/{Id}")]
+        public async Task<IActionResult> UpdateSubMenu(long Id, [FromBody]SubMenuRequest request)
         {
             if (ModelState.IsValid)
             {
-                await _subMenuService.UpdateSubMenuAsync(id, request);
+                await _subMenuService.UpdateSubMenuAsync(Id, request);
                 return StatusCode(204, new ApiResponse
                 {
                     Status = true,
@@ -131,10 +130,10 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpDelete("submenu/{id}")]
-        public async Task<IActionResult> DeleteSubMenuAsync(long id)
+        [HttpDelete("subMenu/{Id}")]
+        public async Task<IActionResult> DeleteSubMenu(long Id)
         {
-            await _subMenuService.DeleteSubMenuAsync(id);
+            await _subMenuService.DeleteSubMenuAsync(Id);
             return StatusCode(204, new ApiResponse
             {
                 Status = true,
@@ -142,9 +141,8 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpPost("upload")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UploadAsync([FromBody]UploadRequest request)
+        [HttpPost(template: "upload")]
+        public async Task<IActionResult> Upload([FromBody]UploadRequest request)
         {
             var imagePath = await _uploadService.UploadImageAsync(request);
             if (imagePath == null)
@@ -160,7 +158,7 @@ namespace MFR.Controllers
                 new ApiResponse
                 {
                     Status = true,
-                    Message = $"Success",
+                    Message = "Success",
                     Result = imagePath
                 });
         }

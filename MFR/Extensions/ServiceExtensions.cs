@@ -57,13 +57,13 @@ namespace MFR.Extensions
             services.AddSingleton(c => config.CreateMapper());
         }
 
-        public static void ConfigureCors(this IServiceCollection services)
-        {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    policy => policy.AllowAnyOrigin().WithMethods("Get").WithHeaders("accept", "content"));
-            });
-        }
+        //public static void ConfigureCors(this IServiceCollection services)
+        //{
+        //    services.AddCors(options =>
+        //    {
+        //        options.AddPolicy("CorsPolicy",
+        //            policy => policy.AllowAnyOrigin().AllowAnyMethod().WithHeaders("accept", "content"));
+        //    });
+        //}
     }
 }

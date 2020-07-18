@@ -14,7 +14,6 @@ namespace MFR.EmailSender
             var from = new EmailAddress(fromAddress);
             var to = new EmailAddress(toAddress);
             var plainTextContent = message;
-            //var htmlContent = "<strong>message</strong>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, null);
             await client.SendEmailAsync(msg);
         }

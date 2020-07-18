@@ -64,7 +64,7 @@ namespace MFR.Core.Service.Implementation
                         Price = shoppingBasketItem.SubMenu.Price,
                         Quantity = shoppingBasketItem.Quantity,
                         CreatedAt = shoppingBasketItem.CreatedAt,
-                        SubMenuId = shoppingBasketItem.SubMenuId,
+                        ShoppingBasketId = shoppingBasketItem.ShoppingBasketId,
                         Description = shoppingBasketItem.SubMenu.Description,
                         ShoppingBasketTotal = total = await _unitOfWork.ShoppingBaskets.GetShoppingBasketTotalAsync(),
                         VAT = _valueAddedTax.CalculateVat(total)

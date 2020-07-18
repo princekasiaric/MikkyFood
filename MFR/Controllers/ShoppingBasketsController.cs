@@ -5,10 +5,12 @@ using MFR.Core.DTO.Response;
 using MFR.Core.Service;
 using MFR.DomainModels;
 using MFR.Persistence.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MFR.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ShoppingBasketsController : ControllerBase
@@ -33,25 +35,26 @@ namespace MFR.Controllers
             _shoppingBasketService.ShoppingBasketId = _shoppingBasketRepo.ShoppingBasketId;
         }
 
-        [HttpGet("basket/{id}")]
-        public async Task<IActionResult> AddToShoppingBasketAsync(long id)
+        [AllowAnonymous]
+        [HttpPost("shoppingBasket/{Id}")]
+        public async Task<IActionResult> AddToShoppingBasket(long Id) 
         {
-            var subMenu = _mapper.Map<SubMenu>(await _subMenuService.GetSubMenuByIdAsync(id));
+            var subMenu = _mapper.Map<SubMenu>(await _subMenuService.GetSubMenuByIdAsync(Id));
             if (subMenu != null)
             {
                 await _shoppingBasketService.AddToBasketAsync(subMenu, 1);
+                return Ok(new ApiResponse { Status = true, Message = "Success" });
             }
             return NotFound(
                     new ApiResponse
                     {
                         Status = false,
-                        Message = $"SubMenu Id '{id}' not found"
+                        Message = $"SubMenu Id '{Id}' not found"
                     });
         }
 
-        [HttpPost("order")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateOrderAsync([FromBody]OrderRequest request)
+        [HttpPost]
+        public async Task<IActionResult> CreateOrder([FromBody]OrderRequest request)
         {
             if (ModelState.IsValid)
             {
@@ -64,8 +67,8 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpGet("items")]
-        public async Task<IActionResult> GetShoppingBasketItemsAsync()
+        [HttpGet]
+        public async Task<IActionResult> GetShoppingBasketItems()
         {
             var response = await _shoppingBasketService.GetShoppingBasketItemsAsync();
             if (response == null)
@@ -84,16 +87,16 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpDelete("item/{id}")]
-        public async Task<IActionResult> RemoveFromBasketAsync(long id)
+        [HttpDelete("Item/{Id}")]
+        public async Task<IActionResult> RemoveFromBasket(long Id)
         {
-            var subMenu = _mapper.Map<SubMenu>(await _subMenuService.GetSubMenuByIdAsync(id));
+            var subMenu = _mapper.Map<SubMenu>(await _subMenuService.GetSubMenuByIdAsync(Id));
             if (subMenu == null)
             {
                 return NotFound(new ApiResponse
                 {
                     Status = false,
-                    Message = $"Item Id '{id}' not added to shopping basket"
+                    Message = $"Item Id '{Id}' not added to shopping basket"
                 });
             }
             await _shoppingBasketService.RemoveFromBasketAsync(subMenu);
@@ -104,8 +107,8 @@ namespace MFR.Controllers
             });
         }
 
-        [HttpDelete("basket")]
-        public async Task<IActionResult> ClearShoppingBasketAsync()
+        [HttpDelete]
+        public async Task<IActionResult> ClearShoppingBasket()
         {
             await _shoppingBasketService.ClearBasketAsync();
             return StatusCode(204, new ApiResponse
